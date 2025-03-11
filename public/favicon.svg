@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 128 128">
+    <!-- 六边形背景 -->
+    <path class="background" d="
+        M 64,16
+        L 112,40
+        L 112,88
+        L 64,112
+        L 16,88
+        L 16,40
+        Z" />
+
+    <!-- 主要图形 -->
+    <g class="foreground">
+        <!-- M 主体 -->
+        <path d="
+            M 40,44
+            L 40,84
+            M 40,44
+            L 64,84
+            M 64,84
+            L 88,44
+            M 88,44
+            L 88,84" stroke-linecap="round" stroke-linejoin="round" />
+        <!-- 棱角装饰 -->
+        <path d="
+            M 34,42 L 39,42
+            M 34,86 L 39,86
+            M 89,42 L 94,42
+            M 89,86 L 94,86" stroke-linecap="round" stroke-width="4" />
+    </g>
+
+    <style>
+        .background {
+            fill: #0EA5E9;
+            stroke: none;
+        }
+
+        .foreground {
+            fill: none;
+            stroke: #ffffff;
+            stroke-width: 8;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .background {
+                fill: #0284C7;
+            }
+
+            .foreground {
+                stroke: #E0F2FE;
+            }
+        }
+    </style>
+</svg>
