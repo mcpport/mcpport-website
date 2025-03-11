@@ -22,7 +22,7 @@ export default defineConfig({
             name: 'MCPPort',
             icon: 'public/favicon.svg',
             short_name: 'MCPPort',
-            description: 'AllinOne MCPs and APIs',
+            description: 'MCP and API AllinOne',
             start_url: '/',
             theme_color: '#3367D6',
             background_color: '#3367D6',
