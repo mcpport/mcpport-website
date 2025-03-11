@@ -1,5 +1,7 @@
 ---
-import { ClientRouter } from 'astro:transitions';
+import { ClientRouter } from "astro:transitions";
+import { ThemeScript } from "astro-theme-toggle";
+import { GoogleAnalytics } from "astro-analytics";
 
 import "@/styles/globals.css";
 ---
@@ -11,6 +13,8 @@ import "@/styles/globals.css";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <GoogleAnalytics id="G-HZJN4QHZXK" />
+    <ThemeScript />
     <title>MCPPort</title>
     <ClientRouter />
   </head>
