@@ -11,7 +11,6 @@ import compressor from 'astro-compressor';
 import playformCompress from '@playform/compress';
 import purgecss from 'astro-purgecss';
 import webmanifest from 'astro-webmanifest';
-import Font from 'vite-plugin-font';
 
 const defaultLocale = 'en';
 const locales = {
@@ -82,13 +81,6 @@ export default defineConfig({
     ],
     vite: {
         // @ts-ignore
-        plugins: [tailwindcss(), Font.vite({
-            scanFiles: {
-                // ?subsets 将会匹配 default
-                default: ['src/**/*.{json,js,jsx,ts,tsx,astro}'],
-                // import { css } from 'public/font.ttf?subsets&key=subset-1';
-                'subset-1': ['example/**/*.{json,js,jsx,ts,tsx,astro}'],
-            },
-        })],
+        plugins: [tailwindcss()],
     },
 });

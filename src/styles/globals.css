@@ -1,2 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@import "@/assets/font/result.css";
+
+body {
+  font-family: "寒蝉全圆体";
+}
