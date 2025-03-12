@@ -9,6 +9,6 @@
     },
     "jsx": "preserve",
     "jsxImportSource": "astro",
-    "types": ["astro/client"]
+    "types": ["astro/client", "vite-plugin-font/src/font"]
   }
 }
