@@ -1,9 +1,29 @@
 ---
 import Basic from "@/layouts/basic.astro";
 import { Toggle } from "astro-theme-toggle";
+import { getLocale } from "astro-i18n-aut";
+
+const locale = getLocale(Astro.url);
+
+let title: string;
+let description: string;
+let todo: string;
+switch (locale) {
+  case "zh":
+    title = "MCP Port";
+    description = "MCP服务器与API集成的一站式解决方案";
+    todo = "建设中，敬请期待，可联系我的邮箱：mcpport@outlook.com 或微信：x-xnuo 关注进程";
+    break;
+  default:
+    title = "MCP Port";
+    description = "Your Gateway to MCP Servers and API Integration";
+    todo = "Under Construction, Stay Tuned, Contact me via email: mcpport@outlook.com or WeChat: x-xnuo to follow the progress";
+}
 ---
 
 <Basic>
-  <h1>MCPPort</h1>
+  <h1>{title}</h1>
+  <p>{description}</p>
+  <p>{todo}</p>
   <Toggle style="width: 32px; height: 32px;" />
 </Basic>

@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
+import { i18n, filterSitemapByDefaultLocale } from "astro-i18n-aut/integration";
 import cloudflarePagesHeaders from 'astro-cloudflare-pages-headers';
 import react from '@astrojs/react';
 import partytown from '@astrojs/partytown';
@@ -11,10 +12,25 @@ import playformCompress from '@playform/compress';
 import purgecss from 'astro-purgecss';
 import webmanifest from 'astro-webmanifest';
 
+const defaultLocale = 'en';
+const locales = {
+    en: 'en-US',
+    zh: 'zh-CN',
+}
+
 // https://astro.build/config
 export default defineConfig({
     site: 'https://mcpport.com',
+    trailingSlash: "always",
+    build: {
+        format: "directory",
+    },
     integrations: [
+        i18n({
+            locales,
+            defaultLocale,
+            exclude: ["pages/robots.txt.js", "pages/**/*.{js,ts,jsx,tsx,md,mdx,html}"],
+        }),
         cloudflarePagesHeaders(),
         react(),
         partytown(),
@@ -27,28 +43,38 @@ export default defineConfig({
             theme_color: '#3367D6',
             background_color: '#3367D6',
             display: 'standalone',
+            lang: 'en-US',
+            locales: {
+                zh: {
+                    name: 'MCPPort',
+                    lang: 'zh-CN',
+                    short_name: 'MCPPort',
+                    description: 'MCP和API一站式解决方案',
+                    start_url: '/zh/',
+                    theme_color: '#3367D6',
+                    background_color: '#3367D6',
+                    display: 'standalone',
+                }
+            }
         }),
         purgecss(),
         sitemap(
-            // {
-            //     filter: (page) =>
-            //         page !== 'https://stargazers.club/secret-vip-lounge-1/' &&
-            //         page !== 'https://stargazers.club/secret-vip-lounge-2/' &&
-            //         page !== 'https://stargazers.club/secret-vip-lounge-3/' &&
-            //         page !== 'https://stargazers.club/secret-vip-lounge-4/',
-            //     customPages: [
-            //         'https://stargazers.club/external-page',
-            //         'https://stargazers.club/external-page2'
-            //     ],
-            // i18n: {
-            //     defaultLocale: 'en', // 所有不包含 `es` 或 `fr` 的链接都将被视为默认语言环境，即 `en`
-            //     locales: {
-            //     en: 'en-US', // `defaultLocale` 的值必须在 `locales` 键中存在
-            //     es: 'es-ES',
-            //     fr: 'fr-CA',
-            //     },
-            // },
-            // }
+            {
+                i18n: {
+                    locales,
+                    defaultLocale,
+                },
+                filter: filterSitemapByDefaultLocale({ defaultLocale }),
+                //     filter: (page) =>
+                //         page !== 'https://stargazers.club/secret-vip-lounge-1/' &&
+                //         page !== 'https://stargazers.club/secret-vip-lounge-2/' &&
+                //         page !== 'https://stargazers.club/secret-vip-lounge-3/' &&
+                //         page !== 'https://stargazers.club/secret-vip-lounge-4/',
+                //     customPages: [
+                //         'https://stargazers.club/external-page',
+                //         'https://stargazers.club/external-page2'
+                //     ],
+            }
         ),
         playformCompress(),
         compressor(),
